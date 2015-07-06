@@ -1,0 +1,29 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'http://updates.jmonkeyengine.org/maven'
+    }
+}
+
+def jmeVersion = '3.0'
+
+dependencies {
+    compile "com.jme3:jme3-core:${jmeVersion}.+"
+    compile "com.jme3:jme3-effects:${jmeVersion}.+"
+    compile "com.jme3:jme3-networking:${jmeVersion}.+"
+    compile "com.jme3:jme3-plugins:${jmeVersion}.+"
+    compile "com.jme3:jme3-jogg:${jmeVersion}.+"
+    compile "com.jme3:jme3-terrain:${jmeVersion}.+"
+    compile "com.jme3:jme3-blender:${jmeVersion}.+"
+    compile "com.jme3:jme3-jbullet:${jmeVersion}.+"
+    compile "com.jme3:jme3-niftygui:${jmeVersion}.+"
+    compile "com.jme3:jme3-desktop:${jmeVersion}.+"
+    compile "com.jme3:jme3-lwjgl:${jmeVersion}.+"
+}
+
+mainClassName = "pt.idk.TestApp"
