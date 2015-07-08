@@ -43,9 +43,13 @@ public class TestApp extends SimpleApplication {
         mat.setColor("Ambient", ColorRGBA.Orange);
         mat.setColor("Diffuse", ColorRGBA.Orange);
         player.setMaterial(mat);
+        player.move(0, -10, 0);
 
         rootNode.attachChild(player);
         initKeys();
+
+        flyCam.setEnabled(false);
+        cam.setLocation(new Vector3f(0, 0, 30));
     }
 
     /**
