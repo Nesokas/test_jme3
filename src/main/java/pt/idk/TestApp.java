@@ -9,6 +9,8 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.AnalogListener;
 import com.jme3.input.controls.KeyTrigger;
+import com.jme3.light.AmbientLight;
+import com.jme3.light.DirectionalLight;
 
 public class TestApp extends SimpleApplication {
 
@@ -18,12 +20,28 @@ public class TestApp extends SimpleApplication {
     private static final String PLAYER_LEFT = "Left";
     private Geometry player;
 
+    private void setUpLight() {
+        // We add light so we see the scene
+        AmbientLight al = new AmbientLight();
+        al.setColor(ColorRGBA.White.mult(1.3f));
+        rootNode.addLight(al);
+
+        DirectionalLight dl = new DirectionalLight();
+        dl.setColor(ColorRGBA.White);
+        dl.setDirection(new Vector3f(2.8f, -2.8f, -2.8f).normalizeLocal());
+        rootNode.addLight(dl);
+    }
+
     @Override
     public void simpleInitApp() {
+        setUpLight();
+
         Box b = new Box(1, 1, 1);
         player = new Geometry("Player", b);
-        Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setColor("Color", ColorRGBA.Orange);
+        Material mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+        mat.setBoolean("UseMaterialColors", true);
+        mat.setColor("Ambient", ColorRGBA.Orange);
+        mat.setColor("Diffuse", ColorRGBA.Orange);
         player.setMaterial(mat);
 
         rootNode.attachChild(player);
