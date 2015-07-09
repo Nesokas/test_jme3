@@ -18,6 +18,9 @@ public class TestApp extends SimpleApplication {
     private static final String PLAYER_DOWN = "Down";
     private static final String PLAYER_RIGHT = "Right";
     private static final String PLAYER_LEFT = "Left";
+    private static final int PLAYER_SPEED = 16;
+    private static final int PLAYER_ROTATION_SPEED = 3;
+    
     private Geometry player;
 
     private void setUpLight() {
@@ -64,33 +67,34 @@ public class TestApp extends SimpleApplication {
 
     }
     private AnalogListener analogListener = new AnalogListener() {
+        
         @Override
         public void onAnalog(String name, float value, float tpf) {
             if (name.equals(PLAYER_UP)) {
                 Vector3f v = player.getLocalTranslation();
-                player.setLocalTranslation(v.x, v.y + value * speed * 2, v.z);
+                player.setLocalTranslation(v.x, v.y + value * speed * PLAYER_SPEED, v.z);
             }
 
             if (name.equals(PLAYER_DOWN)) {
                 Vector3f v = player.getLocalTranslation();
-                player.setLocalTranslation(v.x, v.y - value * speed * 2, v.z);
+                player.setLocalTranslation(v.x, v.y - value * speed * PLAYER_SPEED, v.z);
             }
 
             if (name.equals(PLAYER_RIGHT)) {
                 Vector3f v = player.getLocalTranslation();
-                player.setLocalTranslation(v.x + value * speed * 2, v.y, v.z);
+                player.setLocalTranslation(v.x + value * speed * PLAYER_SPEED, v.y, v.z);
             }
 
             if (name.equals(PLAYER_LEFT)) {
                 Vector3f v = player.getLocalTranslation();
-                player.setLocalTranslation(v.x - value * speed * 2, v.y, v.z);
+                player.setLocalTranslation(v.x - value * speed * PLAYER_SPEED, v.y, v.z);
             }
         }
     };
 
     @Override
     public void simpleUpdate(float tpf) {
-        player.rotate(0, 2 * tpf, 0);
+        player.rotate(0, PLAYER_ROTATION_SPEED * tpf, 0);
     }
 
     public static void main(String[] args) {
