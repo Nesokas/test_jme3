@@ -99,6 +99,7 @@ public class TestApp extends SimpleApplication {
 
     public static void main(String[] args) {
         TestApp app = new TestApp();
+	app.setShowSettings(false);
         app.start();
     }
 }
