@@ -99,7 +99,11 @@ public class TestApp extends SimpleApplication {
 
     public static void main(String[] args) {
         TestApp app = new TestApp();
-	app.setShowSettings(false);
+        AppSettings settings = new AppSettings(true);
+        settings.setVSync(true);
+
+        app.setSettings(settings);
+        app.setShowSettings(false);
         app.start();
     }
 }
