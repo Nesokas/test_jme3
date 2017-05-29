@@ -11,6 +11,7 @@ import com.jme3.input.controls.AnalogListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.light.AmbientLight;
 import com.jme3.light.DirectionalLight;
+import com.jme3.system.AppSettings;
 
 public class TestApp extends SimpleApplication {
 
@@ -18,9 +19,9 @@ public class TestApp extends SimpleApplication {
     private static final String PLAYER_DOWN = "Down";
     private static final String PLAYER_RIGHT = "Right";
     private static final String PLAYER_LEFT = "Left";
-    private static final int PLAYER_SPEED = 16;
+    private static final int PLAYER_SPEED = 20;
     private static final int PLAYER_ROTATION_SPEED = 3;
-    
+
     private Geometry player;
 
     private void setUpLight() {
@@ -46,13 +47,13 @@ public class TestApp extends SimpleApplication {
         mat.setColor("Ambient", ColorRGBA.Orange);
         mat.setColor("Diffuse", ColorRGBA.Orange);
         player.setMaterial(mat);
-        player.move(0, -10, 0);
+        player.move(0, -20, 0);
 
         rootNode.attachChild(player);
         initKeys();
 
         flyCam.setEnabled(false);
-        cam.setLocation(new Vector3f(0, 0, 30));
+        cam.setLocation(new Vector3f(0, 0, 60));
     }
 
     /**
@@ -66,8 +67,9 @@ public class TestApp extends SimpleApplication {
         inputManager.addListener(analogListener, PLAYER_UP, PLAYER_DOWN, PLAYER_LEFT, PLAYER_RIGHT);
 
     }
+
     private AnalogListener analogListener = new AnalogListener() {
-        
+
         @Override
         public void onAnalog(String name, float value, float tpf) {
             if (name.equals(PLAYER_UP)) {
